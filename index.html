@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ariny— Profil • Cerkak • Poster Edukasi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#ffb86b;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071025 0%, #081122 60%, #0b1a2a 100%);color:#e6eef8}
+    .container{max-width:1000px;margin:32px auto;padding:24px}
+
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ff6b6b);display:flex;align-items:center;justify-content:center;font-weight:800;color:#102132}
+    nav{display:flex;gap:8px}
+    nav button{background:transparent;border:1px solid var(--glass);padding:8px 14px;border-radius:10px;color:var(--muted);cursor:pointer}
+    nav button.active{background:linear-gradient(90deg,var(--accent),#ff6b6b);color:#102132;border:none}
+
+    /* card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));padding:20px;border-radius:14px;box-shadow:0 6px 20px rgba(2,6,23,0.6);border:1px solid var(--glass)}
+
+    /* grid */
+    .grid{display:grid;grid-template-columns:320px 1fr;gap:20px}
+
+    /* profile */
+    .profile{display:flex;flex-direction:column;gap:14px}
+    .avatar{width:100%;height:240px;border-radius:12px;background:linear-gradient(180deg,#ffe3c1,#ffd1a8);display:flex;align-items:center;justify-content:center;color:#102132;font-weight:800;font-size:28px}
+    .info{display:flex;flex-direction:column;gap:6px}
+    .info .row{display:flex;justify-content:space-between;color:var(--muted)}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{padding:6px 10px;border-radius:999px;background:var(--glass-2);color:var(--muted);font-size:13px}
+
+    /* content pages */
+    .page{display:none}
+    .page.active{display:block}
+
+    /* cerkak styling */
+    .cerkak{white-space:pre-wrap;line-height:1.7;font-size:16px;color:#e8f1ff}
+
+    /* poster */
+    .poster{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:24px;border-radius:12px;background:linear-gradient(120deg,#092132 0%, #0b2030 100%);position:relative;overflow:hidden}
+    .poster .left{flex:1}
+    .poster .title{font-size:24px;font-weight:700;margin-bottom:8px}
+    .poster .subtitle{color:var(--muted);margin-bottom:12px}
+    .poster .cta{display:inline-block;padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#ff6b6b);color:#102132;font-weight:700;text-decoration:none}
+
+    /* poster graphic */
+    .sun{width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff6d6, #ffd28a 45%, rgba(255,146,86,0.6) 65%, transparent 80%);box-shadow:0 12px 40px rgba(255,150,60,0.12);position:absolute;right:30px;top:-40px;animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(12px)}100%{transform:translateY(0)}}
+
+    /* poster text animation */
+    .poster-phrase{font-size:20px;font-weight:700;letter-spacing:0.6px;display:inline-block;animation:pop 1.6s ease both}
+    @keyframes pop{0%{opacity:0;transform:translateY(10px) scale(0.98)}100%{opacity:1;transform:none}}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* komentar style */
+    .input-area input, .input-area textarea{
+      width:100%;padding:12px;border-radius:10px;border:none;background:var(--glass-2);color:#e8eef8;margin-bottom:12px
+    }
+    .input-area textarea{height:110px;resize:none}
+    .input-area button{
+      width:100%;padding:12px;border:none;border-radius:10px;
+      background:linear-gradient(90deg,var(--accent),#ff6b6b);
+      color:#102132;font-weight:700;cursor:pointer
+    }
+    .comment{
+      background:var(--glass-2);padding:14px;border-radius:10px;margin-top:12px;
+      border-left:3px solid var(--accent)
+    }
+    .comment .name{font-weight:700;color:var(--accent)}
+    .comment .msg{margin-top:4px;color:#dbe6f7}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13p}
+
+    /* responsive */
+    @media (max-width:880px){.grid{grid-template-columns:1fr;}
+    .avatar{height:180px}
+    .sun{display:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">ARINY</div>
+        <div>
+          <div style="font-weight:700;font-size:18px">Ariny — Profil & Cerkak</div>
+          <div style="color:var(--muted);font-size:13px">Situs sederhana untuk presentasi cerita dan poster edukasi</div>
+        </div>
+      </div>
+      <nav aria-label="Main">
+        <button id="btn-1" class="active" onclick="showPage(1)">Data Diri</button>
+        <button id="btn-2" onclick="showPage(2)">Cerkak</button>
+        <button id="btn-3" onclick="showPage(3)">Poster</button>
+        <button id="btn-4" onclick="showPage(4)">Komentar</button>
+      </nav>
+    </header>
+
+    <main class="card">
+      <div class="grid">
+        <aside class="profile"><img src="D:\ARINY ATAKA XI RPL 2\cerkak b.jawa\arn.jpg">
+          <div class="card card-mini" style="padding:12px;background:transparent;border:none">
+            <div class="info">
+              <div class="row"><strong>Nama</strong><span>ARINY ATAKA</span></div>
+              <div class="row"><strong>Usia</strong><span>16 tahun</span></div>
+              <div class="row"><strong>Tempat, Tanggal lahir</strong><span>Malang, 04 05 2009</span></div>
+              <div class="row"><strong>Alamat</strong><span>Tiromarto Tawang Sari RT 25 RW 11</span></div>
+            </div>
+            <div style="margin-top:12px" class="badges">
+              <span class="badge">Tangguh</span>
+              <span class="badge">Peduli keluarga</span>
+              <span class="badge">Impian kuliah</span>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;padding:12px;border-radius:10px;background:var(--glass);color:var(--muted);font-size:14px">
+            <strong></strong>
+            <div style="margin-top:8px;color:var(--muted)">Email: arinyataka@gmail.com</div>
+          </div>
+        </aside>
+
+        <section>
+          <!-- Page 1: Data Diri -->
+          <article id="page-1" class="page active">
+            <h2 style="margin-top:0">Halo, aku Ariny Ataka 👋</h2>
+            <p style="color:var(--muted)">Halo! aku anak pertama dari 2 bersaudara, di dalam situs ini ada data diri singkat tentang saya, cerkak yang menceritakan tentang perjuangan saya, dan poster yang memberikan pesan agar kita bisa menjaga pergaulan kita</p>
+            <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="card" style="padding:14px">
+                <h3 style="margin:0 0 8px 0">Pendidikan</h3>
+                <p style="margin:0;color:var(--muted)">Duduk dibangku SMK kelas 11 di SMKN 1 AMPELGADING</p>
+              </div>
+              <div class="card" style="padding:14px">
+                <h3 style="margin:0 0 8px 0">Hobi & Impian</h3>
+                <p style="margin:0;color:var(--muted)">Menari dan menyanyi, Bisa mengubah hidup agar hidup selayaknya perempuan dan bisa membahagiakan orang tua dan adik saya</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Page 2: Cerkak -->
+          <article id="page-2" class="page">
+            <h2 style="margin-top:0">Cerkak: "Anak Wedok Nomer Siji"</h2>
+            <div class="cerkak card" style="padding:18px">
+Dara lungguh piyambakan ing pawon. Tangane lagi nyekel cangkir berisi kopi sing wis adhem, nanging durung diombe. Dheweke mandeng metu saka jendhela, ningali srengenge arep mlebur ing sisih kulon. Wektu iki biasane wong tuwane arep teka saka kebon.
+
+Dara iku anak wadon nomer siji saka telung sadulur. Sedulure loro lanang isih cilik, loro-lorone isih sekolah SD. Bapake dadi buruh pabrik, dene ibune adol jamu gendong. Urip meh ora cukup, nanging kulawargane tansah diwarnai katentreman lan guyonan.
+
+Nanging, segara urip ora tau tentrem. Rong sasi kepungkur, ibune klelep ing sawijining awan. Ibune tiba-tiba lumpuh separo awak amarga strok. Kahanan kulawargane, sing wis temen-temen prasasat, dadi luwih abot.
+
+Kabeh tanggung jawob rumah tangga saiki klebu marang Dara. Mangsa iku dheweke lagi persiapan ujian kanggo mlebu universitas. Nanging, impen babagan kuliah kudu disingkirake. Dina-dinané diisi karo masak, nyuci, nyucèk adhine, lan ngganti popok ibune. Bapake sing biasane temen saiki katon lara lan kerep meneng piyambakan.
+
+Sedina sawise ibune lumpuh, Bapake nggawa Dara menyang kamar turu ibune. Ibune lagi turu. Bapake nyekel pundhak Dara karo ati sing abot.
+
+“Dik, Bapak ngerti, kowe kudu ngalah akeh. Kowe kudu dadi tulang punggung ibu saiki. Kowe sing paling tuwa, kudu kuat,” pangandikane Bapak alon, nanging abot kaya watu.
+
+Tembung "kudu kuat" kasebut meleket ing atine Dara. Dheweke mesem, nyekel tangane Bapak. "Ora papa, Pak. Aku isih kuwat."
+
+Nanging, ing wayah-wayah sepi kaya saiki, kekuwatane kaya arep rontog. Atine suwe-suwe pengen nangis, nanging luh ora tau ditokne. "Aku anak nomer siji, aku kudu kuat," dadi mantra sing terus diucapake ing ati.
+
+Esuke, Bapake krungu swara saka pawon. Wektu jam papat esuk, dheweke mlebu lan ndeleng Dara wis arep masak sega kanggo sarapan. Dheweke uga wis nyiapake jamu kanggo ibune. Raine Dara pucet, nanging isih kasih mesem.
+
+"Dara, kowe turu piro jam iki?" takon Bapake karo ati sing trenyuh.
+
+"Cukup, Pak. Aku ora ngantuk," jawab Dara cekak.
+
+Bapake ora mangsuli. Dheweke lungguh ing kursi kayu cedhak kompor. "Bapak ngerti, kowe nandhang sungkowo. Kowe kudu ngalahake impenmu kanggo kulawarga iki."
+
+Dara meneng. Tangane mandheg nglebokake kayu bakar menyang kompor.
+
+"Kuat iku, Dik, dudu ati sing atos kaya watu," Bapake nerusake, swarane lembut. "Kuat iku kaya wit jati. Nandhang angin, nanging oyodé kuwat nyekel bumi. Kowe olih nangis, olih ngerasakake sedih, nanging aja nganti ambruk. Ojo wedi nampilake raos, nanging uga ojo lali yen kowe isih duwe Bapak."
+
+Paningale Dara sing ditekani saiki dadi burem. Akhire, luh sing ditahan suwe-suwe mili. Dheweke nangis ing pangkuane Bapake, ngelebokake kabeh rasa kesel, wedi, lan sedih sing ditahan suwene iki.
+
+"Saged, Pak. Nanging abot banget," jerite Dara alon.
+
+"Iya, Pak ngerti. Abot banget. Nanging kowe aja nandhang piyambakan. Aja dikungkung dhewekan. Kuat kuwi tegese ngerti kapan kudu nyuwun tulung," jare Bapake sambil ngrangkul putrine.
+
+Sawise iku, Dara isih dadi 'anak wadon nomer siji sing kudu kuat'. Nanging, saiki dheweke ngerti. Kekuwatan iki dudu tembok kanggo nutupi raos, nanging dadi oyod kanggo tetep urip, tuwuh, lan sesambat karo kulawarga. Kuat tegese urip bareng-bareng, sanajan ing wektu sing paling angel.
+            </div>
+          </article>
+
+          <!-- Page 3: Poster -->
+          <article id="page-3" class="page">
+            <h2 style="margin-top:0">Poster Edukasi — "HINDARI PERGAULAN BEBAS"</h2>
+            <img src="D:\ARINY ATAKA XI RPL 2\cerkak b.jawa\rzl.jpg" width="450" reigth="450">
+            <div class="poster">
+              <div class="left">
+                <div class="poster-phrase">PESAN PENTING !!</div>
+                <p class="subtitle">pentingnya menjaga kehormatan diri dan masa depan, memilih teman yang baik, serta memiliki kontrol diri yang kuat untuk menghindari dampak negatif seperti masalah kesehatan mental, moral, dan sosial</p>
+                <a class="cta" href="#" onclick="alert('Semoga semangat, jangan pernah menyerah ya ingat setiap kesulitan pasti ada kemudahan, proud of you sehat selalu dan semoga selalu dikelilingi kebaikan dimanapun kamu berada hidup lebih lama ya teman teman')">JANGAN LUPA DI CLICK</a>
+              </div>
+              </div>
+              </article>
+             <!-- ⭐ PAGE 4: KOMENTAR -->
+          <article id="page-4" class="page">
+            <h2>Komentar & Pesan</h2>
+
+            <div class="input-area">
+              <input id="nama" type="text" placeholder="Nama Anda...">
+              <textarea id="pesan" placeholder="Tulis komentar Anda..."></textarea>
+              <button onclick="addComment()">Kirim Komentar</button>
+            </div>
+
+            <h3 style="margin-top:20px;color:var(--muted)">Komentar Masuk:</h3>
+            <div id="comment-list"></div>
+          </article>
+
+        </section>
+      </div>
+
+      <footer>© ARINY ATAKA XI RPL 2 2025/2026</footer>
+    </main>
+  </div>
+
+  <script>
+    function showPage(n){
+      document.querySelectorAll('.page').forEach((p,i)=>p.classList.toggle('active',i===n-1));
+      document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('active',i===n-1));
+      history.replaceState(null,'','#page='+n)
+    }
+
+    // LOAD INITIAL PAGE
+    (function(){
+      const m = location.hash.match(/page=(\d)/);
+      const idx = m ? Number(m[1]) : 1;
+      showPage(idx);
+      loadComments();
+    })();
+
+    /* -------------------------
+       SISTEM KOMENTAR LOCAL
+    ------------------------- */
+    function addComment(){
+      let nama = document.getElementById("nama").value.trim();
+      let pesan = document.getElementById("pesan").value.trim();
+
+      if(!nama || !pesan){
+        alert("Nama & pesan harus diisi!");
+        return;
+      }
+
+      let data = JSON.parse(localStorage.getItem("komentar") || "[]");
+      data.push({nama, pesan});
+      localStorage.setItem("komentar", JSON.stringify(data));
+
+      document.getElementById("nama").value="";
+      document.getElementById("pesan").value="";
+
+      loadComments();
+    }
+
+    function loadComments(){
+      let area = document.getElementById("comment-list");
+      area.innerHTML = "";
+
+      let data = JSON.parse(localStorage.getItem("komentar") || "[]");
+
+      data.forEach(c=>{
+        let div = document.createElement("div");
+        div.className="comment";
+        div.innerHTML = `
+          <div class="name">${c.nama}</div>
+          <div class="msg">${c.pesan}</div>
+        `;
+        area.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+        
